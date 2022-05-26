@@ -15,10 +15,15 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormRenderComponent } from './form-render/form-render.component';
+import { FormCreationComponent } from './form-creation/form-creation.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FormRenderComponent,
+    FormCreationComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,96 @@
+{
+  "posts": [
+    {
+      "formname": "Doctor Form",
+      "controlls": [
+        {
+          "valueType": "Text Box",
+          "type": "EDIT_TEXT",
+          "title": "Firstname",
+          "row": false,
+          "minLength": "3",
+          "maxLength": "20",
+          "value": null,
+          "enteredValue": null,
+          "widgetData": []
+        },
+        {
+          "valueType": "Text Box",
+          "type": "EDIT_TEXT",
+          "title": "Lastname",
+          "row": false,
+          "minLength": "3",
+          "maxLength": "20",
+          "value": null,
+          "enteredValue": null,
+          "widgetData": []
+        },
+        {
+          "valueType": "Radio Button",
+          "type": "RADIO",
+          "title": "Gender",
+          "row": false,
+          "minLength": "",
+          "maxLength": "",
+          "value": null,
+          "enteredValue": null,
+          "widgetData": [
+            {
+              "optionTitle": "Male",
+              "optionName": "Male",
+              "optionValue": "Male"
+            },
+            {
+              "optionTitle": "Female",
+              "optionName": "Female",
+              "optionValue": "Female"
+            }
+          ]
+        },
+        {
+          "valueType": "Dropdown",
+          "type": "DROPDOWN",
+          "title": "Select Country",
+          "row": false,
+          "minLength": "",
+          "maxLength": "",
+          "value": null,
+          "enteredValue": null,
+          "widgetData": [
+            {
+              "optionTitle": "USA",
+              "optionName": "USA",
+              "optionValue": "USA"
+            },
+            {
+              "optionTitle": "India",
+              "optionName": "India",
+              "optionValue": "India"
+            },
+            {
+              "optionTitle": "China",
+              "optionName": "China",
+              "optionValue": "China"
+            },
+            {
+              "optionTitle": "Russia",
+              "optionName": "Russia",
+              "optionValue": "Russia"
+            }
+          ]
+        }
+      ],
+      "id": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
