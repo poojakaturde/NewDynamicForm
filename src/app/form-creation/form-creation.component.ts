@@ -12,7 +12,6 @@ import {SharedService} from "../shared/shared.service"
 export class FormCreationComponent implements OnInit {
 
   form!: FormGroup;
-  display = false;
   result: any;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private shared: SharedService) { }
@@ -46,7 +45,6 @@ export class FormCreationComponent implements OnInit {
 
   addForm() {
     this.controlls().push(this.newForm());
-    this.display=false;
   }
 
   removeForm(formIndex: number) {
@@ -93,11 +91,4 @@ export class FormCreationComponent implements OnInit {
     this.router.navigate(['form'])
   }
 
-  openModal(formIndex: any) {
-    this.display = true;
-  }
-
-  // closeModal(formIndex: any) {
-  //   this.display = "none";
-  // }
 }

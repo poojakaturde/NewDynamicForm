@@ -1,6 +1,6 @@
 <h3 style="text-align:center;">Form Preview</h3>
 <hr>
-<div>
+<div style="margin-left: 20px;">
   <div *ngFor="let formData of formRenderData.controlls" [ngSwitch]="true"
     [ngStyle]="{'display':(formData.row === true)? 'inline-block' : 'inline'}" style="padding: 15px;">
 
@@ -16,6 +16,7 @@
     <mat-form-field appearance="outline" *ngSwitchCase="formData.type === 'EDIT_TEXT_PHONE'">
       <mat-label>{{formData.title}}</mat-label>
       <input matInput placeholder="">
+      <i class="material-icons" matSuffix>phone</i>
     </mat-form-field>
 
     <div *ngSwitchCase="formData.type === 'DROPDOWN'">
@@ -30,8 +31,8 @@
       </mat-form-field>
     </div>
 
-    <div style="width:300px;" *ngSwitchCase="formData.type === 'RADIO'">
-      <label id="example-radio">{{formData.title}} :</label><br>
+    <div class="radioDiv" *ngSwitchCase="formData.type === 'RADIO'">
+      <label id="example-radio" style="margin-left: 30px;">{{formData.title}} :</label><br>
       <mat-radio-group aria-labelledby="example-radio" *ngFor="let option of formData.widgetData">
         <mat-radio-button value="option.optionName">{{option.optionName}}</mat-radio-button>
       </mat-radio-group>
@@ -48,9 +49,9 @@
     </div>
 
     <div *ngSwitchCase="formData.type === 'CHECKBOX'">
-      <section class="example-section">
-        <mat-checkbox class="example-margin">Checked</mat-checkbox> &nbsp;
-        <mat-checkbox class="example-margin">Indeterminate</mat-checkbox>
+      <mat-label>{{formData.title}}</mat-label>
+      <section class="example-section" *ngFor="let option of formData.widgetData">
+        <mat-checkbox class="example-margin">{{option.optionName}}</mat-checkbox> &nbsp;
       </section>
     </div>
   </div>
