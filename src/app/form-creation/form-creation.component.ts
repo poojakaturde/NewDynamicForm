@@ -19,62 +19,92 @@ export class FormCreationComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group(
       {
-        formname: [null],
-        controlls: this.fb.array([]),
+        name: "",
+        field: this.fb.array([]),
       }
     );
   }
   
-  controlls(): FormArray {
-    return this.form.get('controlls') as FormArray;
+  field(): FormArray {
+    return this.form.get('field') as FormArray;
   }
 
   newForm(): FormGroup {
     return this.fb.group({
-      valueType: '',
+      row: false,
+      childField:this.fb.array([]),
+      name: '',
       type: '',
       title: '',
-      row: false,
-      minLength: '',
-      maxLength: '',
-      value:null,
-      enteredValue:null,
-      widgetData: this.fb.array([])
+      minLength:null ,
+      maxLength: null,
+      value:'',
+      enteredValue:'',
+      widgetData: this.fb.array([]),
+      isChecked:false
     });
   }
 
   addForm() {
-    this.controlls().push(this.newForm());
+    this.field().push(this.newForm());
   }
 
   removeForm(formIndex: number) {
-    this.controlls().removeAt(formIndex);
+    this.field().removeAt(formIndex);
   }
 
-  formWidgetData(formIndex: number): FormArray {
-    return this.controlls()
-      .at(formIndex)
+  childField(formIndex: number): FormArray {
+    return this.field()
+    .at(formIndex)
+    .get('childField') as FormArray;
+  }
+
+  newChildField(): FormGroup {
+    return this.fb.group({
+      name: '',
+      type: '',
+      title: '',
+      row: false,
+      minLength:null ,
+      maxLength: null,
+      value:'',
+      enteredValue:'',
+      widgetData: this.fb.array([]),
+      isChecked:false
+    });
+  }
+
+  addChildFieldData(formIndex: number) {
+    this.childField(formIndex).push(this.newChildField());
+  }
+
+  removeChildFieldData(formIndex: number, childDataIndex: number) {
+    this.childField(formIndex).removeAt(childDataIndex);
+  }
+
+  formWidgetData(formIndex: number,childDataIndex: number): FormArray {
+    return this.childField(formIndex)
+      .at(childDataIndex)
       .get('widgetData') as FormArray;
   }
 
   newWidgetData(): FormGroup {
     return this.fb.group({
-      optionTitle: '',
-      optionName: '',
-      optionValue: '',
+      title: '',
+      value: '',
+      isSelected: false,
     });
   }
 
-  addFormWidgetData(formIndex: number) {
-    this.formWidgetData(formIndex).push(this.newWidgetData());
+  addFormWidgetData(formIndex: number,childDataIndex: number) {
+    this.formWidgetData(formIndex,childDataIndex).push(this.newWidgetData());
   }
 
-  removeFormWidgetData(formIndex: number, widgetDataIndex: number) {
-    this.formWidgetData(formIndex).removeAt(widgetDataIndex);
+  removeFormWidgetData(formIndex: number,childDataIndex: number, widgetDataIndex: number) {
+    this.formWidgetData(formIndex,childDataIndex).removeAt(widgetDataIndex);
   }
 
   onSubmit() {
-    console.log(this.form.value);
     this.result = this.form.value;
   }
 
@@ -87,8 +117,9 @@ export class FormCreationComponent implements OnInit {
 
   onPreview() {
     this.result = this.form.value;
-    this.shared.sendPreviewFormData(this.result);
-    this.router.navigate(['form'])
+    console.log(this.result);
+  //   this.shared.sendPreviewFormData(this.result);
+  //   this.router.navigate(['form'])
   }
 
 }

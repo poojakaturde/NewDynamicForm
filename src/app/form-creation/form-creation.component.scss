@@ -1,25 +1,23 @@
 .box{
     background-color: rgb(233, 233, 233);
     border-radius: 15px;
-    padding: 30px;
+    padding: 20px;
     justify-content: center;
 }
 
 .controlBody{
     background-color: rgb(244, 244, 244);
     border-radius: 15px; 
+    padding: 20px;
+    min-height: 100px;
+    margin-top: 40px;
+}
+
+.child {
+    background-color: rgb(224, 222, 222);
+    border-radius: 15px; 
     padding: 30px;
     min-height: 100px;
     margin-top: 40px;
 }
-.modal-dialog {
- 
-    width: 600px;
-    height: auto;
 
-  }
-
-  .optionBody{
-    background-color: whitesmoke;
-    border-radius: 15px; 
-}

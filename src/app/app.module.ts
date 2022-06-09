@@ -18,7 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormRenderComponent } from './form-render/form-render.component';
 import { FormCreationComponent } from './form-creation/form-creation.component';
 import {MatRadioModule} from '@angular/material/radio';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSlideToggleModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
