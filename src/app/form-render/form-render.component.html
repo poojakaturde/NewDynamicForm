@@ -1,13 +1,9 @@
 <h3 style="text-align:center;">Form Preview</h3>
 <hr>
 <div style="margin-left: 20px;">
-  <div *ngFor="let formData of formRenderData.controlls" [ngSwitch]="true"
+  <div *ngFor="let formData of formRenderData.field[0].childField" [ngSwitch]="true"
     [ngStyle]="{'display':(formData.row === true)? 'inline-block' : 'inline'}" style="padding: 15px;">
 
-    <!-- <div class="form-floating " *ngSwitchCase="formData.type === 'EDIT_TEXT'">
-        <input type="text" class="form-control" placeholder="{{formData.type}}" id="floatingInput" required>
-        <label for="floatingInput">{{formData.title}}</label>
-      </div> -->
     <mat-form-field appearance="outline" *ngSwitchCase="formData.type === 'EDIT_TEXT'">
       <mat-label>{{formData.title}}</mat-label>
       <input matInput placeholder="">
@@ -24,8 +20,8 @@
         <mat-label>{{formData.title}}</mat-label>
         <input type="text" placeholder="Pick one" aria-label="Admin" matInput [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of formData.widgetData" [value]="option.optionName">
-            {{option.optionName}}
+          <mat-option *ngFor="let option of formData.widgetData" [value]="option.value">
+            {{option.title}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
@@ -34,7 +30,7 @@
     <div class="radioDiv" *ngSwitchCase="formData.type === 'RADIO'">
       <label id="example-radio" style="margin-left: 30px;">{{formData.title}} :</label><br>
       <mat-radio-group aria-labelledby="example-radio" *ngFor="let option of formData.widgetData">
-        <mat-radio-button value="option.optionName">{{option.optionName}}</mat-radio-button>
+        <mat-radio-button value="option.value">{{option.title}}</mat-radio-button>
       </mat-radio-group>
     </div>
 
@@ -51,7 +47,7 @@
     <div *ngSwitchCase="formData.type === 'CHECKBOX'">
       <mat-label>{{formData.title}}</mat-label>
       <section class="example-section" *ngFor="let option of formData.widgetData">
-        <mat-checkbox class="example-margin">{{option.optionName}}</mat-checkbox> &nbsp;
+        <mat-checkbox class="example-margin">{{option.title}}</mat-checkbox> &nbsp;
       </section>
     </div>
   </div>

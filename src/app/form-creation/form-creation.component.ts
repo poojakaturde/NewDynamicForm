@@ -20,6 +20,7 @@ export class FormCreationComponent implements OnInit {
     this.form = this.fb.group(
       {
         name: "",
+        status:"ENABLED",
         field: this.fb.array([]),
       }
     );
@@ -31,15 +32,15 @@ export class FormCreationComponent implements OnInit {
 
   newForm(): FormGroup {
     return this.fb.group({
-      row: false,
+      row: true,
       childField:this.fb.array([]),
-      name: '',
-      type: '',
-      title: '',
+      name: "",
+      type: "",
+      title: "",
       minLength:null ,
       maxLength: null,
-      value:'',
-      enteredValue:'',
+      value:"",
+      enteredValue:"",
       widgetData: this.fb.array([]),
       isChecked:false
     });
@@ -61,16 +62,17 @@ export class FormCreationComponent implements OnInit {
 
   newChildField(): FormGroup {
     return this.fb.group({
-      name: '',
-      type: '',
-      title: '',
-      row: false,
+      name: "",
+      type: "",
+      title: "",
+      row: true,
       minLength:null ,
       maxLength: null,
-      value:'',
-      enteredValue:'',
+      value:"",
+      enteredValue:"",
       widgetData: this.fb.array([]),
-      isChecked:false
+      isChecked:false,
+      childField:null
     });
   }
 
@@ -118,8 +120,11 @@ export class FormCreationComponent implements OnInit {
   onPreview() {
     this.result = this.form.value;
     console.log(this.result);
-  //   this.shared.sendPreviewFormData(this.result);
-  //   this.router.navigate(['form'])
+    this.http.post<any>("http://69.49.228.240:8080/dynamicform/createform", this.result).subscribe((res) => {
+      console.log(res);
+    })
+    this.shared.sendPreviewFormData(this.result);
+    this.router.navigate(['form'])
   }
 
 }
