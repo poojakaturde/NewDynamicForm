@@ -7,14 +7,12 @@
     </div>
     <div style="display: inline-block; width:70%;">
       <button class="btn btn-outline-primary" style="float: right; " (click)="addForm()"> <span
-          style="vertical-align: middle;"> <i class="material-icons">add_circle</i></span> Add Form Field</button>
+          style="vertical-align: middle;"> <i class="material-icons">add_circle</i></span> Add Row</button>
     </div>
     <hr>
     <div class="child" formArrayName="field" *ngFor="let o of field().controls; let formIndex = index">
       <div class="row" [formGroupName]="formIndex" >
-        <div class="col-md-4 mt-1">
-          <mat-slide-toggle [labelPosition]='"before"' formControlName="row"> Row Type </mat-slide-toggle>
-        </div>
+       
         <div class="col-md-4">
           <button mat-raised-button color="accent" (click)="addChildFieldData(formIndex)"
             style="width: 120px; height:40px;">Add Child</button>

@@ -35,14 +35,14 @@ export class FormCreationComponent implements OnInit {
       row: true,
       childField:this.fb.array([]),
       name: "",
-      type: "",
+      type: "ROW_TYPE",
       title: "",
-      minLength:null ,
-      maxLength: null,
-      value:"",
-      enteredValue:"",
+      minLength:0 ,
+      maxLength: 0,
+      value:null,
+      enteredValue:null,
       widgetData: this.fb.array([]),
-      isChecked:false
+      checked:false
     });
   }
 
@@ -65,13 +65,12 @@ export class FormCreationComponent implements OnInit {
       name: "",
       type: "",
       title: "",
-      row: true,
-      minLength:null ,
-      maxLength: null,
-      value:"",
-      enteredValue:"",
+      minLength:0 ,
+      maxLength: 0,
+      value:null,
+      enteredValue:null,
       widgetData: this.fb.array([]),
-      isChecked:false,
+      checked:false,
       childField:null
     });
   }
@@ -120,7 +119,7 @@ export class FormCreationComponent implements OnInit {
   onPreview() {
     this.result = this.form.value;
     console.log(this.result);
-    this.http.post<any>("http://69.49.228.240:8080/dynamicform/createform", this.result).subscribe((res) => {
+    this.http.post<any>("https://3509-103-208-69-135.in.ngrok.io/dynamicform/createform", this.result).subscribe((res) => {
       console.log(res);
     })
     this.shared.sendPreviewFormData(this.result);

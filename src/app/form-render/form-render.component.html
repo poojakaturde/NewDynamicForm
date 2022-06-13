@@ -1,54 +1,55 @@
 <h3 style="text-align:center;">Form Preview</h3>
 <hr>
 <div style="margin-left: 20px;">
-  <div *ngFor="let formData of formRenderData.field[0].childField" [ngSwitch]="true"
-    [ngStyle]="{'display':(formData.row === true)? 'inline-block' : 'inline'}" style="padding: 15px;">
+  <div *ngFor="let form of formRenderData.field" [ngSwitch]="true" [ngStyle]="{'display':(form.row === true)? 'inline-block' : 'inline'}" style="padding: 15px;">
+    <div *ngFor="let formData of form.childField">
 
-    <mat-form-field appearance="outline" *ngSwitchCase="formData.type === 'EDIT_TEXT'">
-      <mat-label>{{formData.title}}</mat-label>
-      <input matInput placeholder="">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" *ngSwitchCase="formData.type === 'EDIT_TEXT_PHONE'">
-      <mat-label>{{formData.title}}</mat-label>
-      <input matInput placeholder="">
-      <i class="material-icons" matSuffix>phone</i>
-    </mat-form-field>
-
-    <div *ngSwitchCase="formData.type === 'DROPDOWN'">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" *ngSwitchCase="formData.type === 'EDIT_TEXT'">
         <mat-label>{{formData.title}}</mat-label>
-        <input type="text" placeholder="Pick one" aria-label="Admin" matInput [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of formData.widgetData" [value]="option.value">
-            {{option.title}}
-          </mat-option>
-        </mat-autocomplete>
+        <input matInput placeholder="">
       </mat-form-field>
-    </div>
 
-    <div class="radioDiv" *ngSwitchCase="formData.type === 'RADIO'">
-      <label id="example-radio" style="margin-left: 30px;">{{formData.title}} :</label><br>
-      <mat-radio-group aria-labelledby="example-radio" *ngFor="let option of formData.widgetData">
-        <mat-radio-button value="option.value">{{option.title}}</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <div *ngSwitchCase="formData.type === 'DATE_PICKER'">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" *ngSwitchCase="formData.type === 'EDIT_TEXT_PHONE'">
         <mat-label>{{formData.title}}</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput placeholder="">
+        <i class="material-icons" matSuffix>phone</i>
       </mat-form-field>
-    </div>
 
-    <div *ngSwitchCase="formData.type === 'CHECKBOX'">
-      <mat-label>{{formData.title}}</mat-label>
-      <section class="example-section" *ngFor="let option of formData.widgetData">
-        <mat-checkbox class="example-margin">{{option.title}}</mat-checkbox> &nbsp;
-      </section>
+      <div *ngSwitchCase="formData.type === 'DROPDOWN'">
+        <mat-form-field appearance="outline">
+          <mat-label>{{formData.title}}</mat-label>
+          <input type="text" placeholder="Pick one" aria-label="Admin" matInput [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of formData.widgetData" [value]="option.value">
+              {{option.title}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <div class="radioDiv" *ngSwitchCase="formData.type === 'RADIO'">
+        <label id="example-radio" >{{formData.title}} :</label><br>
+        <mat-radio-group aria-labelledby="example-radio" *ngFor="let option of formData.widgetData">
+          <mat-radio-button value="option.value">{{option.title}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div *ngSwitchCase="formData.type === 'DATE_PICKER'">
+        <mat-form-field appearance="outline">
+          <mat-label>{{formData.title}}</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div *ngSwitchCase="formData.type === 'CHECKBOX'">
+        <mat-label>{{formData.title}}</mat-label>
+        <section class="example-section" *ngFor="let option of formData.widgetData">
+          <mat-checkbox class="example-margin">{{option.title}}</mat-checkbox> &nbsp;
+        </section>
+      </div>
     </div>
   </div>
 </div>

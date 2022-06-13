@@ -19,7 +19,7 @@ export class FormRenderComponent implements OnInit {
       // })
 
       this.formRenderData=this.shared.getPreviewFormData();
-      console.log(this.formRenderData.field[0].childField)
+      console.log(this.formRenderData)
   }
 
 }

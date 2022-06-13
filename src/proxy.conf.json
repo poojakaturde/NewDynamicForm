@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "http://69.49.228.240:8080/dynamicform/createform",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
