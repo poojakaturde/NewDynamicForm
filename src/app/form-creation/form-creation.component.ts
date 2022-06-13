@@ -119,7 +119,7 @@ export class FormCreationComponent implements OnInit {
   onPreview() {
     this.result = this.form.value;
     console.log(this.result);
-    this.http.post<any>("https://3509-103-208-69-135.in.ngrok.io/dynamicform/createform", this.result).subscribe((res) => {
+    this.http.post<any>("https://4a1c-103-208-69-135.in.ngrok.io/dynamicform/createform", this.result).subscribe((res) => {
       console.log(res);
     })
     this.shared.sendPreviewFormData(this.result);
