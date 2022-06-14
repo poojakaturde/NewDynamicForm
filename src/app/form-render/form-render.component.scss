@@ -1,6 +1,6 @@
-.mat-form-field{
-    width: 325px;
-}
+// .mat-form-field{
+//     width: 325px;
+// }
   
   .mat-radio-button {
     margin: 5px;
@@ -13,5 +13,9 @@
 .formRender {
   padding: 15px; 
   display: inline-block;
-  width: calc(100% / 4);
+
+}
+
+.check{
+  display:inline;
 }
