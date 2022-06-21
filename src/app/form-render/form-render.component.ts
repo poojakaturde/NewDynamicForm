@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit} from '@angular/core';
 import { SharedService } from '../shared/shared.service';
 
@@ -10,14 +9,9 @@ import { SharedService } from '../shared/shared.service';
 export class FormRenderComponent implements OnInit {
 
   formRenderData:any;
-  constructor(private http: HttpClient,private shared: SharedService) { }
+  constructor(private shared: SharedService) { }
 
   ngOnInit(): void {
-      // this.http.get<any>("http://localhost:3000/posts").subscribe((res) => {
-      //   this.formRenderData=res[0];
-      //   console.log(this.formRenderData)
-      // })
-
       this.formRenderData=this.shared.getPreviewFormData();
       console.log(this.formRenderData.field[0].childField.length)
   }

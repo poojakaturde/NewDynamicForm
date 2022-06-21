@@ -1,0 +1,91 @@
+<div class="box">
+  <form [formGroup]="submitForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating" style="width:50%; display: inline-block;">
+      <mat-form-field appearance="outline" style="width:50%;margin-left: 20px;">
+        <mat-select #selected formControlName="formName" ngModel>
+          <mat-option *ngFor="let form of formList" [value]="form.name">{{form.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div style="display: inline-block; width:50%;">
+      <button class="btn btn-primary" (click)="generateForm(selected)"> Proceed </button>
+    </div>
+    <hr>
+    <div *ngIf="isValid">
+
+      <div *ngFor="let list of formData" [ngSwitch]="true">
+        <div class="formRender" *ngFor="let f of list.childField">
+
+          <mat-form-field appearance="outline" *ngSwitchCase="f.type === 'EDIT_TEXT'"
+            [ngStyle]="{'width':(list.childField.length === 2) ? '660px' : (list.childField.length === 3) ? '440px'  : (list.childField.length >= 4) ? '330px' : '1420px'}">
+            <mat-label>{{f.title}}</mat-label>
+            <input matInput [formControlName]="f.title" ngModel>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" *ngSwitchCase="f.type === 'EDIT_TEXT_PHONE'"
+            [ngStyle]="{'width':(list.childField.length === 2) ? '660px' : (list.childField.length === 3) ? '440px'  : (list.childField.length >= 4) ? '330px' : '1420px'}">
+            <mat-label>{{f.title}}</mat-label>
+            <input matInput [formControlName]="f.title" ngModel>
+            <i class="material-icons" matSuffix>phone</i>
+          </mat-form-field>
+
+          <div *ngSwitchCase="f.type === 'DROPDOWN'">
+            <mat-form-field appearance="outline"
+              [ngStyle]="{'width':(list.childField.length === 2) ? '660px' : (list.childField.length === 3) ? '440px'  : (list.childField.length >= 4) ? '330px' : '1420px'}">
+              <mat-label>{{f.title}}</mat-label>
+              <mat-select [formControlName]="f.title" ngModel>
+                <mat-option *ngFor="let option of f.widgetData" [value]="option.value">{{option.title}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div *ngSwitchCase="f.type === 'AUTOCOMPLETE'">
+            <mat-form-field appearance="outline"
+              [ngStyle]="{'width':(list.childField.length === 2) ? '660px' : (list.childField.length === 3) ? '440px'  : (list.childField.length >= 4) ? '330px' : '1420px'}">
+              <mat-label>{{f.title}}</mat-label>
+              <input type="text" placeholder="Pick one" aria-label="Admin" matInput [matAutocomplete]="auto"
+                [formControlName]="f.title" ngModel>
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of f.widgetData" [value]="option.value">
+                  {{option.title}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+          <div class="radioDiv" *ngSwitchCase="f.type === 'RADIO'"
+            [ngStyle]="{'width':(list.childField.length === 2) ? '660px' : (list.childField.length === 3) ? '440px'  : (list.childField.length >= 4) ? '330px' : '1420px'}">
+            <label id="example-radio">{{f.title}} :</label><br>
+            <mat-radio-group aria-labelledby="example-radio" *ngFor="let option of f.widgetData"
+              [formControlName]="f.title" ngModel>
+              <mat-radio-button value="option.value">{{option.title}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div *ngSwitchCase="f.type === 'DATE_PICKER'">
+            <mat-form-field appearance="outline"
+              [ngStyle]="{'width':(list.childField.length === 2) ? '660px' : (list.childField.length === 3) ? '440px'  : (list.childField.length >= 4) ? '330px' : '1420px'}">
+              <mat-label>{{f.title}}</mat-label>
+              <input matInput [matDatepicker]="picker" [formControlName]="f.title" ngModel>
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div *ngSwitchCase="f.type === 'CHECKBOX'">
+            <mat-label>{{f.title}} :</mat-label><br>
+            <section class="check" *ngFor="let option of f.widgetData" [formControlName]="f.title"
+            ngModel>
+              <mat-checkbox>{{option.title}}</mat-checkbox> &nbsp;
+            </section>
+          </div>
+
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" style="margin-left: 1000px;">Submit</button>
+    </div>
+
+  </form>
+</div>

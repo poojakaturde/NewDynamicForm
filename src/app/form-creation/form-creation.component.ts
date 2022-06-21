@@ -69,9 +69,9 @@ export class FormCreationComponent implements OnInit {
       maxLength: 0,
       value:null,
       enteredValue:null,
+      childField:null,
       widgetData: this.fb.array([]),
-      checked:false,
-      childField:null
+      checked:false
     });
   }
 
@@ -105,25 +105,20 @@ export class FormCreationComponent implements OnInit {
     this.formWidgetData(formIndex,childDataIndex).removeAt(widgetDataIndex);
   }
 
-  onSubmit() {
-    this.result = this.form.value;
-  }
-
   onSave(){
-    this.http.post<any>("http://localhost:3000/posts", this.result).subscribe((res) => {
+    this.result = this.form.value;
+    console.log(this.result)
+    this.http.post<any>("https://d426-103-208-69-91.in.ngrok.io/dynamicform/createForm", this.result).subscribe((res) => {
       console.log(res);
     })
-    this.form.reset();
+    this.router.navigate(['formGenerate'])
   }
 
   onPreview() {
     this.result = this.form.value;
     console.log(this.result);
-    this.http.post<any>("https://4a1c-103-208-69-135.in.ngrok.io/dynamicform/createform", this.result).subscribe((res) => {
-      console.log(res);
-    })
     this.shared.sendPreviewFormData(this.result);
-    this.router.navigate(['form'])
+    this.router.navigate(['formPreview'])
   }
 
 }

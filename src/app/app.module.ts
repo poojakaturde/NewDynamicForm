@@ -20,11 +20,20 @@ import { FormCreationComponent } from './form-creation/form-creation.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
+import { HomeComponent } from './home/home.component';
+import { MatTableModule } from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { FormGenerateComponent } from './form-generate/form-generate.component';
+import { FormSubmissionComponent } from './form-submission/form-submission.component';
 @NgModule({
   declarations: [
     AppComponent,
     FormRenderComponent,
-    FormCreationComponent
+    FormCreationComponent,
+    HomeComponent,
+    FormGenerateComponent,
+    FormSubmissionComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +52,10 @@ import {MatButtonModule} from '@angular/material/button';
     ReactiveFormsModule,
     MatRadioModule,
     MatSlideToggleModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

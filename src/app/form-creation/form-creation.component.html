@@ -1,5 +1,5 @@
 <div class="row g-3 box" style="margin:20px;">
-  <form [formGroup]="form" style="width: 90%;" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" style="width: 90%;" >
     <div class="form-floating" style="width:30%; display: inline-block;">
       <input type="text" class="form-control" formControlName="name" id="floatingInput" placeholder="Form Name"
         required>
@@ -12,13 +12,19 @@
     <hr>
     <div class="child" formArrayName="field" *ngFor="let o of field().controls; let formIndex = index">
       <div class="row" [formGroupName]="formIndex" >
-       
+        <!-- <div class="col-md-4">
+          <div class="form-floating ">
+            <input type="text" class="form-control" formControlName="title" id="floatingInput"
+              placeholder="Section Name" required>
+            <label for="floatingInput">Section Name</label>
+          </div>
+        </div> -->
         <div class="col-md-4">
           <button mat-raised-button color="accent" (click)="addChildFieldData(formIndex)"
-            style="width: 120px; height:40px;">Add Child</button>
+            style="width: 120px; height:40px; float: right;">Add Child</button>
         </div>
         <div class="col-md-4">
-          <button mat-icon-button color="warn" (click)="removeForm(formIndex)">
+          <button mat-icon-button color="warn" (click)="removeForm(formIndex)" style="float: right;">
             <i class="material-icons">delete</i>
           </button>
         </div>
