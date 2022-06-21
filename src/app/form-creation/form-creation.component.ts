@@ -108,7 +108,7 @@ export class FormCreationComponent implements OnInit {
   onSave(){
     this.result = this.form.value;
     console.log(this.result)
-    this.http.post<any>("https://d426-103-208-69-91.in.ngrok.io/dynamicform/createForm", this.result).subscribe((res) => {
+    this.http.post<any>("http://intellidocs.geekiobit.in:8080/dynamicform/createForm", this.result).subscribe((res) => {
       console.log(res);
     })
     this.router.navigate(['formGenerate'])

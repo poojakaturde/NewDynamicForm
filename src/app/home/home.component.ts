@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("https://d426-103-208-69-91.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
+    this.http.get("http://intellidocs.geekiobit.in:8080/dynamicform/getAll").subscribe((res) => {
       this.formData = res;
       this.dataSource = new MatTableDataSource(this.formData);
       this.dataSource.paginator = this.paginator;
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
 
 
   deleteForm(data: any) {
-    this.http.delete("https://d426-103-208-69-91.in.ngrok.io/dynamicform/delete?name=" + data.name).subscribe((res) => {
+    this.http.delete("http://intellidocs.geekiobit.in:8080/dynamicform/delete?name=" + data.name).subscribe((res) => {
       console.log(res);
       this.getFormList();
     })

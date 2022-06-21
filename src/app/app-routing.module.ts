@@ -6,6 +6,7 @@ import { FormGenerateComponent } from './form-generate/form-generate.component';
 import { FormRenderComponent } from './form-render/form-render.component';
 import { FormSubmissionComponent } from './form-submission/form-submission.component';
 import { HomeComponent } from './home/home.component';
+import { ViewSubmitFormComponent } from './view-submit-form/view-submit-form.component';
 
 const routes: Routes = [
   {path:'formCreate',component:FormCreationComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'formPreview',component:FormRenderComponent},
   {path:'home',component:HomeComponent},
   {path:'formGenerate',component:FormGenerateComponent},
-  {path:'formSubmit',component:FormSubmissionComponent}
+  {path:'formSubmit',component:FormSubmissionComponent},
+  {path:'viewSubmitForm',component:ViewSubmitFormComponent}
 ];
 
 @NgModule({

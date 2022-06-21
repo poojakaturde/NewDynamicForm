@@ -22,7 +22,15 @@ export class FormGenerateComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFormList();
-    this.submitForm = this.formBuilder.group({});
+    this.submitForm = this.formBuilder.group({})
+    this.sampleForm = this.formBuilder.group({
+      formName: "",
+      field: this.formBuilder.array([])
+    });
+  }
+
+  field(): FormArray {
+    return this.sampleForm.get('field') as FormArray;
   }
 
   formValidation() {
@@ -51,10 +59,11 @@ export class FormGenerateComponent implements OnInit {
       }
     }
     this.submitForm = new FormGroup(group)
+    this.field().push(this.submitForm)
   }
 
   getFormList() {
-    this.http.get("https://d426-103-208-69-91.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
+    this.http.get("http://intellidocs.geekiobit.in:8080/dynamicform/getAll").subscribe((res) => {
       this.formList = res;
     })
   }
@@ -66,7 +75,7 @@ export class FormGenerateComponent implements OnInit {
   }
 
   getSelectedForm() {
-    this.http.get("https://d426-103-208-69-91.in.ngrok.io/dynamicform/get?name=" + this.selectedForm).subscribe((res) => {
+    this.http.get("http://intellidocs.geekiobit.in:8080/dynamicform/get?name=" + this.selectedForm).subscribe((res) => {
       this.formData1 = res;
       this.formData = this.formData1.field
       this.isValid = true;
@@ -77,7 +86,7 @@ export class FormGenerateComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.submitForm.value);
+    console.log(this.sampleForm.value);
   }
 
 }

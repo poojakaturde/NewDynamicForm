@@ -36,7 +36,7 @@ export class FormSubmissionComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("https://d426-103-208-69-91.in.ngrok.io/forms/getAllSubmittedForms").subscribe((res) => {
+    this.http.get("http://intellidocs.geekiobit.in:8080/forms/getAllSubmittedForms").subscribe((res) => {
       this.submittedFormData = res;
       console.log(this.submittedFormData);
       this.dataSource = new MatTableDataSource(this.submittedFormData);
@@ -47,11 +47,11 @@ export class FormSubmissionComponent implements OnInit {
 
   viewForm(data: any) {
     this.shared.sendPreviewFormData(data);
-    this.router.navigate(['formPreview'])
+    this.router.navigate(['viewSubmitForm'])
   }
   
   deleteForm(data: any) {
-    this.http.delete("https://d426-103-208-69-91.in.ngrok.io/forms/delete?id="+data.formId).subscribe((res) => {
+    this.http.delete("http://intellidocs.geekiobit.in:8080/forms/delete?id="+data.formId).subscribe((res) => {
       console.log(res);
       this.getFormList();
     })

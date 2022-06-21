@@ -26,6 +26,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormGenerateComponent } from './form-generate/form-generate.component';
 import { FormSubmissionComponent } from './form-submission/form-submission.component';
+import { ViewSubmitFormComponent } from './view-submit-form/view-submit-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { FormSubmissionComponent } from './form-submission/form-submission.compo
     FormCreationComponent,
     HomeComponent,
     FormGenerateComponent,
-    FormSubmissionComponent
+    FormSubmissionComponent,
+    ViewSubmitFormComponent
   ],
   imports: [
     BrowserModule,
