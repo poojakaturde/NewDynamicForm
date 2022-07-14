@@ -1,8 +1,7 @@
 <div class="box">
-  <form [formGroup]="sampleForm" (ngSubmit)="onSubmit()">
     <div class="form-floating" style="width:50%; display: inline-block;">
       <mat-form-field appearance="outline" style="width:50%;margin-left: 20px;">
-        <mat-select #selected formControlName="formName" ngModel>
+        <mat-select #selected>
           <mat-option *ngFor="let form of formList" [value]="form.name">{{form.name}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -57,9 +56,9 @@
           <div class="radioDiv" *ngSwitchCase="f.type === 'RADIO'"
             [ngStyle]="{'width':(list.childField.length === 2) ? '660px' : (list.childField.length === 3) ? '440px'  : (list.childField.length >= 4) ? '322px' : '1420px'}">
             <label id="example-radio">{{f.title}} :</label><br>
-            <mat-radio-group aria-labelledby="example-radio" *ngFor="let option of f.widgetData"
-              [formControlName]="f.title" ngModel>
-              <mat-radio-button value="option.value">{{option.title}}</mat-radio-button>
+            <mat-radio-group aria-labelledby="example-radio" [formControlName]="f.title" ngModel>
+              <mat-radio-button *ngFor="let option of f.widgetData" [value]="option.value">{{option.title}}
+              </mat-radio-button>
             </mat-radio-group>
           </div>
 
@@ -76,9 +75,8 @@
 
           <div *ngSwitchCase="f.type === 'CHECKBOX'">
             <mat-label>{{f.title}} :</mat-label><br>
-            <section class="check" *ngFor="let option of f.widgetData" [formControlName]="f.title"
-            ngModel>
-              <mat-checkbox>{{option.title}}</mat-checkbox> &nbsp;
+            <section class="check" *ngFor="let option of f.widgetData" >
+              <mat-checkbox [formControlName]="option.title" ngModel [value]="option.value">{{option.title}}</mat-checkbox> &nbsp;
             </section>
           </div>
 
@@ -86,6 +84,6 @@
       </div>
       <button type="submit" class="btn btn-success" style="margin-left: 1000px;">Submit</button>
     </form>
-
-  </form>
 </div>
+
+

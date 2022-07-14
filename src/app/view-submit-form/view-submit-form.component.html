@@ -7,21 +7,20 @@
         <mat-form-field appearance="outline" *ngSwitchCase="formData.type === 'EDIT_TEXT'"
             [ngStyle]="{'width':(form.childField.length === 2) ? '720px' : (form.childField.length === 3) ? '480px'  : (form.childField.length >= 4) ? '345px' : '1490px'}">
             <mat-label>{{formData.title}}</mat-label>
-            <input matInput placeholder="" value="{{formData.value}}">
+            <input matInput value="{{formData.value}}" >
         </mat-form-field>
 
         <mat-form-field appearance="outline" *ngSwitchCase="formData.type === 'EDIT_TEXT_PHONE'"
             [ngStyle]="{'width':(form.childField.length === 2) ? '720px' : (form.childField.length === 3) ? '480px'  : (form.childField.length >= 4) ? '345px' : '1490px'}">
             <mat-label>{{formData.title}}</mat-label>
-            <input matInput placeholder="" value="{{formData.value}}">
+            <input matInput value="{{formData.value}}" >
             <i class="material-icons" matSuffix>phone</i>
         </mat-form-field>
 
         <div *ngSwitchCase="formData.type === 'DROPDOWN'">
             <mat-form-field appearance="outline"
                 [ngStyle]="{'width':(form.childField.length === 2) ? '720px' : (form.childField.length === 3) ? '480px'  : (form.childField.length >= 4) ? '345px' : '1490px'}">
-                <mat-label>{{formData.title}}</mat-label>
-                <mat-select>
+                <mat-select [(value)]="formData.value" >
                     <mat-option *ngFor="let option of formData.widgetData" [value]="option.value" >
                         {{option.title}}</mat-option>
                 </mat-select>
@@ -32,7 +31,7 @@
             <mat-form-field appearance="outline"
                 [ngStyle]="{'width':(form.childField.length === 2) ? '720px' : (form.childField.length === 3) ? '480px'  : (form.childField.length >= 4) ? '345px' : '1490px'}">
                 <mat-label>{{formData.title}}</mat-label>
-                <input type="text" placeholder="Pick one" aria-label="Admin" matInput [matAutocomplete]="auto" value="">
+                <input type="text" matInput [matAutocomplete]="auto" value="{{formData.value}}">
                 <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let option of formData.widgetData" [value]="option.value">
                         {{option.title}}
@@ -41,10 +40,10 @@
             </mat-form-field>
         </div>
 
-        <div class="radioDiv" *ngSwitchCase="formData.type === 'RADIO'"
+        <div *ngSwitchCase="formData.type === 'RADIO'"
             [ngStyle]="{'width':(form.childField.length === 2) ? '720px' : (form.childField.length === 3) ? '480px'  : (form.childField.length >= 4) ? '345px' : '1490px'}">
             <label id="example-radio">{{formData.title}} :</label><br>
-            <mat-radio-group aria-labelledby="example-radio" *ngFor="let option of formData.widgetData">
+            <mat-radio-group aria-labelledby="example-radio" *ngFor="let option of formData.widgetData" >
                 <mat-radio-button [checked]="option.selected" value="option.value">{{option.title}}</mat-radio-button>
             </mat-radio-group>
         </div>
@@ -53,16 +52,16 @@
             <mat-label>{{formData.title}}:</mat-label><br />
             <mat-form-field appearance="outline"
                 [ngStyle]="{'width':(form.childField.length === 2) ? '720px' : (form.childField.length === 3) ? '480px'  : (form.childField.length >= 4) ? '345px' : '1490px'}">
-                <input matInput [matDatepicker]="picker" [placeholder]="formData.value">
+                <input matInput [matDatepicker]="picker" [ngModel]="formData.value">
                 <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="true"></mat-datepicker-toggle>
-                <mat-datepicker [startAt]="formData.value" #picker [disabled]="true"></mat-datepicker>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker startAt="{{formData.value}}" #picker></mat-datepicker>
             </mat-form-field>
         </div>
 
         <div *ngSwitchCase="formData.type === 'CHECKBOX'">
             <mat-label>{{formData.title}} :</mat-label><br>
-            <section class="check" *ngFor="let option of formData.widgetData">
+            <section *ngFor="let option of formData.widgetData" >
                 <mat-checkbox [checked]="option.selected">{{option.title}}</mat-checkbox> &nbsp;
             </section>
         </div>

@@ -43,8 +43,8 @@
     <div class="radioDiv" *ngSwitchCase="formData.type === 'RADIO'"
       [ngStyle]="{'width':(form.childField.length === 2) ? '720px' : (form.childField.length === 3) ? '480px'  : (form.childField.length >= 4) ? '345px' : '1490px'}">
       <label id="example-radio">{{formData.title}} :</label><br>
-      <mat-radio-group aria-labelledby="example-radio" *ngFor="let option of formData.widgetData">
-        <mat-radio-button value="option.value">{{option.title}}</mat-radio-button>
+      <mat-radio-group aria-labelledby="example-radio">
+        <mat-radio-button [value]="option.title" *ngFor="let option of formData.widgetData">{{option.title}}</mat-radio-button>
       </mat-radio-group>
     </div>
 

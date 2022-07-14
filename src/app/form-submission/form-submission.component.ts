@@ -20,7 +20,9 @@ export class FormSubmissionComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private http: HttpClient, private router: Router,private shared: SharedService) { }
+  constructor(private http: HttpClient, private router: Router,private shared: SharedService) { 
+    this.getFormList();
+  }
 
   ngOnInit(): void {
     this.getFormList();
@@ -38,7 +40,6 @@ export class FormSubmissionComponent implements OnInit {
   getFormList() {
     this.http.get("http://intellidocs.geekiobit.in:8080/forms/getAllSubmittedForms").subscribe((res) => {
       this.submittedFormData = res;
-      console.log(this.submittedFormData);
       this.dataSource = new MatTableDataSource(this.submittedFormData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

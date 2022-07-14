@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
 import { DateAdapter } from '@angular/material/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-submit-form',
@@ -8,15 +9,16 @@ import { DateAdapter } from '@angular/material/core';
   styleUrls: ['./view-submit-form.component.scss']
 })
 export class ViewSubmitFormComponent implements OnInit {
-  
-  formRenderData:any;
-  constructor(private shared: SharedService,private dateAdapter: DateAdapter<Date>) {
+
+  formRenderData: any;
+
+  constructor(private http: HttpClient, private shared: SharedService, private dateAdapter: DateAdapter<Date>) {
     this.dateAdapter.setLocale('en-GB');
-   }
+  }
 
   ngOnInit(): void {
-      this.formRenderData=this.shared.getPreviewFormData();
-      console.log(this.formRenderData)
+    this.formRenderData = this.shared.getPreviewFormData();
+    console.log(this.formRenderData)
   }
 
 }
