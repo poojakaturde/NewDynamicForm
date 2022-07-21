@@ -122,12 +122,11 @@ export class EligibilityCheckComponent implements OnInit {
     this.http.post<any>("https://9c1a-210-16-95-127.in.ngrok.io/dynamicform/createForm", this.result).subscribe((res) => {
       console.log(res);
     })
-    this.router.navigate(['home'])
+    this.router.navigate(['eligible'])
   }
 
   onPreview() {
     this.result = this.form.value;
-    console.log(this.result);
     this.shared.sendPreviewFormData(this.result);
     this.router.navigate(['formPreview'])
   }

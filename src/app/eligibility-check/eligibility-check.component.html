@@ -12,7 +12,7 @@
         <div style="display: inline-block; width:30%;">
             <mat-form-field appearance="outline">
                 <mat-select formControlName="nextFormId">
-                    <mat-option *ngFor="let form of formList" [value]="form.name">{{form.name}}
+                    <mat-option *ngFor="let form of formList" [value]="form._id">{{form.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>

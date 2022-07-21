@@ -13,7 +13,7 @@ export class FormRenderComponent implements OnInit {
 
   ngOnInit(): void {
       this.formRenderData=this.shared.getPreviewFormData();
-      console.log(this.formRenderData.field[0].childField.length)
+      console.log(this.formRenderData)
   }
 
 }

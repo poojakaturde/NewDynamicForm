@@ -45,6 +45,7 @@ export class SubmitEligibilityComponent implements OnInit {
   getEligibilityForm() {
     this.http.get("https://9c1a-210-16-95-127.in.ngrok.io/dynamicform/get?id=" + this.eligibilityFormId).subscribe((res) => {
       this.eligibilityForm1 = res;
+      console.log(this.eligibilityForm1)
       this.eligibilityForm = this.eligibilityForm1.field;
       this.formValidation();
     })
