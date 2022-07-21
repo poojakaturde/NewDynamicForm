@@ -38,7 +38,7 @@ export class FormSubmissionComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("http://intellidocs.geekiobit.in:8080/forms/getAllSubmittedForms").subscribe((res) => {
+    this.http.get("http://69.49.228.240:8080/forms/getAllSubmittedForms").subscribe((res) => {
       this.submittedFormData = res;
       this.dataSource = new MatTableDataSource(this.submittedFormData);
       this.dataSource.paginator = this.paginator;
@@ -52,7 +52,7 @@ export class FormSubmissionComponent implements OnInit {
   }
   
   deleteForm(data: any) {
-    this.http.delete("http://intellidocs.geekiobit.in:8080/forms/delete?id="+data.formId).subscribe((res) => {
+    this.http.delete("http://69.49.228.240:8080/forms/delete?id="+data.formId).subscribe((res) => {
       console.log(res);
       this.getFormList();
     })

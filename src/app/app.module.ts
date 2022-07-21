@@ -27,6 +27,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormGenerateComponent } from './form-generate/form-generate.component';
 import { FormSubmissionComponent } from './form-submission/form-submission.component';
 import { ViewSubmitFormComponent } from './view-submit-form/view-submit-form.component';
+import { EligibilityCheckComponent } from './eligibility-check/eligibility-check.component';
+import { SubmitEligibilityComponent } from './submit-eligibility/submit-eligibility.component';
+import { NotEligibleComponent } from './not-eligible/not-eligible.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,10 @@ import { ViewSubmitFormComponent } from './view-submit-form/view-submit-form.com
     HomeComponent,
     FormGenerateComponent,
     FormSubmissionComponent,
-    ViewSubmitFormComponent
+    ViewSubmitFormComponent,
+    EligibilityCheckComponent,
+    SubmitEligibilityComponent,
+    NotEligibleComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SharedService } from '../shared/shared.service';
 
 @Component({
   selector: 'app-form-generate',
@@ -20,14 +21,16 @@ export class FormGenerateComponent implements OnInit {
   result1: any;
   sampleForm!: FormGroup;
   selectedForm: any;
-  isValid = false;
+  formId:any;
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router,private shared: SharedService) {
     this.getFormList();
   }
 
   ngOnInit(): void {
     this.getFormList();
+    this.formId = this.shared.getNextFormId();
+    this.getSelectedForm();
     this.submitForm = this.formBuilder.group({});
   }
 
@@ -62,49 +65,39 @@ export class FormGenerateComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("http://intellidocs.geekiobit.in:8080/dynamicform/getAll").subscribe((res) => {
+    this.http.get("https://9c1a-210-16-95-127.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
       this.formList = res;
-      console.log(this.formList)
     })
   }
 
-  generateForm(name: any) {
-    this.selectedForm = name.value;
-
-    this.getSelectedForm();
-  }
-
   getSelectedForm() {
-    if (this.selectedForm == "") {
-      alert("Please Select Form to Proceed");
-    }
-    this.http.get("http://intellidocs.geekiobit.in:8080/dynamicform/get?name=" + this.selectedForm).subscribe((res) => {
+    this.http.get("https://9c1a-210-16-95-127.in.ngrok.io/dynamicform/get?id=" + this.formId).subscribe((res) => {
       this.formData1 = res;
       this.formData = this.formData1.field;
-      this.isValid = true;
       this.formValidation();
     })
   }
 
   onSubmit() {
     this.result = this.submitForm.value;
-    console.log(this.result);
     this.submitFormData();
     this.getControls();
-    console.log(this.sampleForm.value);
     this.result1 = this.sampleForm.value;
     this.postSubmitForm();
   }
 
   postSubmitForm() {
-    this.http.post<any>("http://intellidocs.geekiobit.in:8080/forms/submit", this.result1).subscribe((res) => {
-      console.log(res);
+    this.http.post<any>("https://9c1a-210-16-95-127.in.ngrok.io/forms/submit", this.result1).subscribe((res) => {
     })
     this.router.navigate(['formSubmit'])
   }
 
   submitFormData() {
-
+    for (var f of this.formList) {
+      if (f._id === this.formId) {
+        this.selectedForm = f.name;
+      }
+    }
     this.sampleForm = this.formBuilder.group({
       formName: this.selectedForm,
       status: "ENABLED",

@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private http: HttpClient, private router: Router,private shared: SharedService) { }
+  constructor(private http: HttpClient, private router: Router, private shared: SharedService) { }
 
   ngOnInit(): void {
     this.getFormList();
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("http://intellidocs.geekiobit.in:8080/dynamicform/getAll").subscribe((res) => {
+    this.http.get("http://69.49.228.240:8080/dynamicform/getAll").subscribe((res) => {
       this.formData = res;
       this.dataSource = new MatTableDataSource(this.formData);
       this.dataSource.paginator = this.paginator;
@@ -54,10 +54,14 @@ export class HomeComponent implements OnInit {
 
 
   deleteForm(data: any) {
-    this.http.delete("http://intellidocs.geekiobit.in:8080/dynamicform/delete?name=" + data.name).subscribe((res) => {
+    this.http.delete("http://69.49.228.240:8080/dynamicform/delete?name=" + data.name).subscribe((res) => {
       console.log(res);
       this.getFormList();
     })
+  }
+
+  createEligibilityForm() {
+    this.router.navigate(['eligibilityCheck'])
   }
 
 }

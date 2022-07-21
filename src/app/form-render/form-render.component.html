@@ -1,5 +1,6 @@
-<h3 style="text-align:center;">Form Preview</h3>
-<hr>
+<h1 class="header">{{formRenderData.name}}</h1>
+
+<br><br>
 
 <div *ngFor="let form of formRenderData.field" [ngSwitch]="true">
   <div class="formRender" *ngFor="let formData of form.childField">
@@ -14,7 +15,6 @@
       [ngStyle]="{'width':(form.childField.length === 2) ? '720px' : (form.childField.length === 3) ? '480px'  : (form.childField.length >= 4) ? '345px' : '1490px'}">
       <mat-label>{{formData.title}}</mat-label>
       <input matInput placeholder="">
-      <i class="material-icons" matSuffix>phone</i>
     </mat-form-field>
 
     <div *ngSwitchCase="formData.type === 'DROPDOWN'">

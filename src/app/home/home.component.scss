@@ -1,13 +1,15 @@
-.box{
-    background-color: rgb(233, 233, 233);
-    border-radius: 15px;
-    padding: 20px;
-    justify-content: center;
-    margin: 30px;
+.header{
+  background-color: rgb(246, 178, 54);
+  height: 90px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 40px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 table {
-    width: 100%;
+    width: 70%;
+    margin-left: 15%;
   }
   
   .mat-form-field {
@@ -16,5 +18,12 @@ table {
   }
   
   td, th {
-    width: auto;
+    width: 70%;
+    margin-left: 15%;
   }
+
+  .homeTable{
+    width: 70%;
+    margin-left: 15%;
+  }
+  

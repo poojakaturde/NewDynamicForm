@@ -1,0 +1,9 @@
+<div class="notEligiblePage">
+    <h1 class="noEligibleHeader">Sorry !!! You are Not Eligible. </h1>
+    <h2 class="checkWhy">Let's check why?</h2>
+    <div *ngFor="let e of errorResponse.errorMessages">
+        <h2 class="errorMessages">{{e}}</h2>
+    </div>
+    <br><br>
+    <button class="backBtn" (click)="getBackToForm()">Back</button>
+</div>

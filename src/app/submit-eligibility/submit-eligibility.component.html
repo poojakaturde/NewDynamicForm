@@ -1,0 +1,22 @@
+<h1 class="header">{{eligibilityForm1.name}}</h1>
+<h2 style="text-align: center; color:rgb(142, 141, 141)">Let's check if you are eligible for this program. </h2>
+<br><br>
+<form [formGroup]="submitEligibilityForm" (ngSubmit)="onSubmit()">
+    <div *ngFor="let list of eligibilityForm" [ngSwitch]="true">
+        <div class="formRender" *ngFor="let f of list.childField">
+
+            <div *ngSwitchCase="f.type === 'EDIT_TEXT'"
+                [ngStyle]="{'width':(list.childField.length === 2) ? '660px' : (list.childField.length === 3) ? '440px'  : (list.childField.length >= 4) ? '322px' : '1420px'}">
+                <label style="font-size: larger;">Please enter Your {{f.title}} ?</label><br><br>
+                <input type="text" class="form-control" [formControlName]="f.title" ngModel><br><br>
+            </div>
+
+            <div *ngSwitchCase="f.type === 'EDIT_TEXT_PHONE'"
+                [ngStyle]="{'width':(list.childField.length === 2) ? '660px' : (list.childField.length === 3) ? '440px'  : (list.childField.length >= 4) ? '322px' : '1420px'}">
+                <label style="font-size: larger;">Please enter Your {{f.title}} ?</label><br><br>
+                <input type="text" class="form-control" [formControlName]="f.title" ngModel><br><br>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success" style="float: right; margin-right: 200px;">Submit</button>
+</form>
