@@ -1,0 +1,31 @@
+.notEligiblePage {
+  margin: 20px;
+}
+
+.noEligibleHeader {
+  color: #da971b;
+  text-align: center;
+  font-size: 40px;
+}
+
+.checkWhy {
+  color: #8e8d8d;
+  margin-left: 30px;
+}
+
+.errorMessages {
+  color: red;
+  margin-left: 30px;
+}
+
+.backBtn {
+  background-color: #d9920d;
+  margin-left: 30px;
+  width: 120px;
+  height: 50px;
+  font-size: 20px;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+/*# sourceMappingURL=not-eligible.component.css.map */

@@ -1,5 +1,5 @@
 .header {
-  background-color: rgb(227, 109, 66);
+  background-color: #e36d42;
   height: 90px;
   text-align: center;
   padding-top: 20px;
@@ -35,10 +35,11 @@ th {
 
 .btn {
   color: #FA8072;
-  border-color: #FA8072
+  border-color: #FA8072;
 }
 
 .filter {
   margin-right: 15%;
   padding: 30px;
 }
+/*# sourceMappingURL=home.component.css.map */

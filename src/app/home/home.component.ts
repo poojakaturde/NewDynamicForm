@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("http://69.49.228.240:8080/dynamicform/getAll").subscribe((res) => {
+    this.http.get("https://cda1-210-16-95-127.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
       this.formData = res;
       this.dataSource = new MatTableDataSource(this.formData);
       this.dataSource.paginator = this.paginator;
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
 
 
   deleteForm(data: any) {
-    this.http.delete("http://69.49.228.240:8080/dynamicform/delete?name=" + data.name).subscribe((res) => {
+    this.http.delete("https://cda1-210-16-95-127.in.ngrok.io/dynamicform/delete?id=" + data._id).subscribe((res) => {
       console.log(res);
       this.getFormList();
     })

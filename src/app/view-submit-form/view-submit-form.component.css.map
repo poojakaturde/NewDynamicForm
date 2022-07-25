@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAC;EACV,OAAO,EAAE,IAAI;EACb,OAAO,EAAE,YAAY;CACtB;;AAED,AAAA,eAAe,CAAC;EACd,KAAK,EAAE,KAAK;CACb;;AAED,AAAA,iBAAiB,CAAC;EAChB,MAAM,EAAE,GAAG;CACZ",
+    "sources": [
+        "view-submit-form.component.scss"
+    ],
+    "names": [],
+    "file": "view-submit-form.component.css"
+}

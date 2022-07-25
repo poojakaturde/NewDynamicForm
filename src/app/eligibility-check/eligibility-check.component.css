@@ -1,0 +1,25 @@
+.box {
+  background-color: #e9e9e9;
+  border-radius: 15px;
+  padding: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.controlBody {
+  background-color: #f4f4f4;
+  border-radius: 15px;
+  padding: 20px;
+  min-height: 100px;
+  margin-top: 40px;
+}
+
+.child {
+  background-color: #e0dede;
+  border-radius: 15px;
+  padding: 30px;
+  min-height: 100px;
+  margin-top: 40px;
+}
+/*# sourceMappingURL=eligibility-check.component.css.map */
