@@ -1,20 +1,38 @@
-.box{
-    background-color: rgb(233, 233, 233);
-    border-radius: 15px;
-    padding: 20px;
-    justify-content: center;
-    margin: 30px;
+.header {
+  background-color: rgb(227, 109, 66);
+  height: 90px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 40px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.dynamicHeader {
+  font-size: larger;
+  margin: 8px;
+  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+.filter {
+  margin-right: 14%;
+  padding: 30px;
+}
+
+.homeTable,
+td,
+th {
+  width: 70%;
+  margin-left: 15%;
 }
 
 table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 50%;
-  }
-  
-  td, th {
-    width: auto;
-  }
+  width: 70%;
+  margin-left: 15%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 50%;
+}

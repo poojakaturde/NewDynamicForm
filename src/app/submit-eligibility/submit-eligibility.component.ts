@@ -31,7 +31,7 @@ export class SubmitEligibilityComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("https://cda1-210-16-95-127.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
+    this.http.get("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
       this.formData = res;
       for (var f of this.formData) {
         if (f.name == "Eligibility Form") {
@@ -43,7 +43,7 @@ export class SubmitEligibilityComponent implements OnInit {
   }
 
   getEligibilityForm() {
-    this.http.get("https://cda1-210-16-95-127.in.ngrok.io/dynamicform/get?id=" + this.eligibilityFormId).subscribe((res) => {
+    this.http.get("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/get?id=" + this.eligibilityFormId).subscribe((res) => {
       this.eligibilityForm1 = res;
       console.log(this.eligibilityForm1)
       this.eligibilityForm = this.eligibilityForm1.field;
@@ -170,7 +170,7 @@ export class SubmitEligibilityComponent implements OnInit {
 
   postSubmitEligibilityForm() {
     this.shared.sendNextFormId(this.result1.nextFormId);
-    this.http.post<any>("https://cda1-210-16-95-127.in.ngrok.io/forms/submit", this.result1).subscribe((res) => {
+    this.http.post<any>("https://e3c1-103-208-69-114.in.ngrok.io/forms/submit", this.result1).subscribe((res) => {
       this.responseData = res;
       if (this.responseData.errorMessages == null) {
         this.router.navigate(['formGenerate']);

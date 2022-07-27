@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
   formData: any;
   displayedColumns: string[] = ['name', 'status', 'action'];
   dataSource!: MatTableDataSource<any>;
+  display = "none";
+  deleteFormId: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -35,7 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("https://cda1-210-16-95-127.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
+    this.http.get("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
       this.formData = res;
       this.dataSource = new MatTableDataSource(this.formData);
       this.dataSource.paginator = this.paginator;
@@ -53,15 +55,32 @@ export class HomeComponent implements OnInit {
   }
 
 
-  deleteForm(data: any) {
-    this.http.delete("https://cda1-210-16-95-127.in.ngrok.io/dynamicform/delete?id=" + data._id).subscribe((res) => {
+  deleteForm() {
+    this.http.delete("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/delete?id=" + this.deleteFormId).subscribe((res) => {
       console.log(res);
       this.getFormList();
+      this.display = "none";
+    })
+  }
+
+  deleteFormPermanent() {
+    this.http.delete("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/deletePermanently?id=" + this.deleteFormId).subscribe((res) => {
+      console.log(res);
+      this.getFormList();
+      this.display = "none";
     })
   }
 
   createEligibilityForm() {
     this.router.navigate(['eligibilityCheck'])
+  }
+
+  openModal(data: any) {
+    this.display = "block";
+    this.deleteFormId = data._id;
+  }
+  onCloseHandled() {
+    this.display = "none";
   }
 
 }

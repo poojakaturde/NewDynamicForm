@@ -65,13 +65,13 @@ export class FormGenerateComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("https://cda1-210-16-95-127.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
+    this.http.get("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
       this.formList = res;
     })
   }
 
   getSelectedForm() {
-    this.http.get("https://cda1-210-16-95-127.in.ngrok.io/dynamicform/get?id=" + this.formId).subscribe((res) => {
+    this.http.get("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/get?id=" + this.formId).subscribe((res) => {
       this.formData1 = res;
       this.formData = this.formData1.field;
       this.formValidation();
@@ -87,7 +87,7 @@ export class FormGenerateComponent implements OnInit {
   }
 
   postSubmitForm() {
-    this.http.post<any>("https://cda1-210-16-95-127.in.ngrok.io/forms/submit", this.result1).subscribe((res) => {
+    this.http.post<any>("https://e3c1-103-208-69-114.in.ngrok.io/forms/submit", this.result1).subscribe((res) => {
     })
     this.router.navigate(['formSubmit'])
   }
