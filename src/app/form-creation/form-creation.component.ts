@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import {SharedService} from "../shared/shared.service"
+import { SharedService } from "../shared/shared.service"
 
 @Component({
   selector: 'app-form-creation',
@@ -13,6 +13,7 @@ export class FormCreationComponent implements OnInit {
 
   form!: FormGroup;
   result: any;
+  display = false;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private shared: SharedService) { }
 
@@ -20,12 +21,12 @@ export class FormCreationComponent implements OnInit {
     this.form = this.fb.group(
       {
         name: "",
-        status:"ENABLED",
+        status: "ENABLED",
         field: this.fb.array([]),
       }
     );
   }
-  
+
   field(): FormArray {
     return this.form.get('field') as FormArray;
   }
@@ -33,16 +34,16 @@ export class FormCreationComponent implements OnInit {
   newForm(): FormGroup {
     return this.fb.group({
       row: true,
-      childField:this.fb.array([]),
+      childField: this.fb.array([]),
       name: "",
       type: "ROW_TYPE",
       title: "",
-      minLength:0 ,
+      minLength: 0,
       maxLength: 0,
-      value:null,
-      enteredValue:null,
+      value: null,
+      enteredValue: null,
       widgetData: this.fb.array([]),
-      checked:false
+      checked: false
     });
   }
 
@@ -56,8 +57,8 @@ export class FormCreationComponent implements OnInit {
 
   childField(formIndex: number): FormArray {
     return this.field()
-    .at(formIndex)
-    .get('childField') as FormArray;
+      .at(formIndex)
+      .get('childField') as FormArray;
   }
 
   newChildField(): FormGroup {
@@ -65,13 +66,15 @@ export class FormCreationComponent implements OnInit {
       name: "",
       type: "",
       title: "",
-      minLength:0 ,
+      minLength: 0,
       maxLength: 0,
-      value:null,
-      enteredValue:null,
-      childField:null,
+      value: null,
+      enteredValue: null,
+      childField: null,
       widgetData: this.fb.array([]),
-      checked:false
+      checked: false,
+      api: "",
+      required: false
     });
   }
 
@@ -83,7 +86,7 @@ export class FormCreationComponent implements OnInit {
     this.childField(formIndex).removeAt(childDataIndex);
   }
 
-  formWidgetData(formIndex: number,childDataIndex: number): FormArray {
+  formWidgetData(formIndex: number, childDataIndex: number): FormArray {
     return this.childField(formIndex)
       .at(childDataIndex)
       .get('widgetData') as FormArray;
@@ -97,18 +100,24 @@ export class FormCreationComponent implements OnInit {
     });
   }
 
-  addFormWidgetData(formIndex: number,childDataIndex: number) {
-    this.formWidgetData(formIndex,childDataIndex).push(this.newWidgetData());
+  addFormWidgetData(formIndex: number, childDataIndex: number) {
+    this.formWidgetData(formIndex, childDataIndex).push(this.newWidgetData());
   }
 
-  removeFormWidgetData(formIndex: number,childDataIndex: number, widgetDataIndex: number) {
-    this.formWidgetData(formIndex,childDataIndex).removeAt(widgetDataIndex);
+  removeFormWidgetData(formIndex: number, childDataIndex: number, widgetDataIndex: number) {
+    this.formWidgetData(formIndex, childDataIndex).removeAt(widgetDataIndex);
   }
 
-  onSave(){
+  onSave() {
     this.result = this.form.value;
-    console.log(this.result)
-    this.http.post<any>("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/createForm", this.result).subscribe((res) => {
+    for (var list of this.result.field) {
+      for (var f of list.childField) {
+        if (f.type != 'API_AUTOCOMPLETE') {
+          f.api = null;
+        }
+      }
+    }
+    this.http.post<any>("https://c527-103-208-69-65.in.ngrok.io/dynamicform/createForm", this.result).subscribe((res) => {
       console.log(res);
     })
     this.router.navigate(['home'])

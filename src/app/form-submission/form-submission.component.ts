@@ -38,7 +38,7 @@ export class FormSubmissionComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("https://e3c1-103-208-69-114.in.ngrok.io/forms/getAllSubmittedForms").subscribe((res) => {
+    this.http.get("https://c527-103-208-69-65.in.ngrok.io/forms/getAllSubmittedForms").subscribe((res) => {
       this.submittedFormData = res;
       this.dataSource = new MatTableDataSource(this.submittedFormData);
       this.dataSource.paginator = this.paginator;
@@ -52,7 +52,7 @@ export class FormSubmissionComponent implements OnInit {
   }
   
   deleteForm(data: any) {
-    this.http.delete("https://e3c1-103-208-69-114.in.ngrok.io/forms/delete?id="+data.formId).subscribe((res) => {
+    this.http.delete("https://c527-103-208-69-65.in.ngrok.io/forms/delete?id="+data.formId).subscribe((res) => {
       console.log(res);
       this.getFormList();
     })

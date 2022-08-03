@@ -27,7 +27,7 @@
       </mat-form-field>
     </div>
 
-    <div *ngSwitchCase="formData.type === 'AUTOCOMPLETE'">
+    <div *ngSwitchCase="formData.type === 'API_AUTOCOMPLETE'">
       <mat-form-field appearance="outline"
         [ngStyle]="{'width':(form.childField.length === 2) ? '720px' : (form.childField.length === 3) ? '480px'  : (form.childField.length >= 4) ? '345px' : '1490px'}">
         <mat-label>{{formData.title}}</mat-label>

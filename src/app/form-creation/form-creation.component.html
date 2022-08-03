@@ -1,5 +1,5 @@
 <div class="row g-3 box" style="margin:20px;">
-  <form [formGroup]="form" style="width: 90%;" >
+  <form [formGroup]="form" style="width: 90%;">
     <div class="form-floating" style="width:30%; display: inline-block;">
       <input type="text" class="form-control" formControlName="name" id="floatingInput" placeholder="Form Name"
         required>
@@ -11,14 +11,7 @@
     </div>
     <hr>
     <div class="child" formArrayName="field" *ngFor="let o of field().controls; let formIndex = index">
-      <div class="row" [formGroupName]="formIndex" >
-        <!-- <div class="col-md-4">
-          <div class="form-floating ">
-            <input type="text" class="form-control" formControlName="title" id="floatingInput"
-              placeholder="Section Name" required>
-            <label for="floatingInput">Section Name</label>
-          </div>
-        </div> -->
+      <div class="row" [formGroupName]="formIndex">
         <div class="col-md-4">
           <button mat-raised-button color="accent" (click)="addChildFieldData(formIndex)"
             style="width: 120px; height:40px; float: right;">Add Child</button>
@@ -47,7 +40,7 @@
 
             <div class="col-md-2" style="display: inline-block;">
               <div class="form-floating ">
-                <input type="text" class="form-control" formControlName="type" id="floatingInput"
+                <input type="text" class="form-control" #type formControlName="type" id="floatingInput"
                   placeholder="Control type" required>
                 <label for="floatingInput">Control Type</label>
               </div>
@@ -77,9 +70,14 @@
               </div>
             </div>
 
-            <div class="col-md-1 mt-2" style="display: inline-block; ">
+            <div class="col-md-1 mt-2" style="display: inline-block;" *ngIf="type.value != 'API_AUTOCOMPLETE'">
               &nbsp; &nbsp; <i class="material-icons"
                 (click)="addFormWidgetData(formIndex,childDataIndex)">add_box</i>Widgets
+            </div>
+
+            <div class="col-md-1 mt-2" style="display: inline-block;">
+              &nbsp; &nbsp; &nbsp;<mat-slide-toggle formControlName="required"></mat-slide-toggle><br />
+              <label>Is Required?</label>
             </div>
 
             <div class="col-md-1 mt-2" style="display: inline-block;">
@@ -119,6 +117,18 @@
               </div>
 
               <br />
+            </div>
+
+            <div *ngIf="type.value == 'API_AUTOCOMPLETE'" class="row" style="margin: 15px;">
+
+              <div class="col-md-3" style="display: inline-block;">
+                <div class="form-floating ">
+                  <input type="text" class="form-control" formControlName="api" placeholder="Api Name"
+                    id="floatingInput" required>
+                  <label for="floatingInput">Api Name</label>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

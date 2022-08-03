@@ -45,11 +45,24 @@
         <mat-form-field appearance="outline"
           [ngStyle]="{'width':(list.childField.length === 2) ? '660px' : (list.childField.length === 3) ? '440px'  : (list.childField.length >= 4) ? '322px' : '1420px'}">
           <mat-label>{{f.title}}</mat-label>
-          <input type="text" placeholder="Pick one" aria-label="Admin" matInput [matAutocomplete]="auto"
-            [formControlName]="f.title" ngModel>
+          <input type="text" aria-label="Admin" matInput [matAutocomplete]="auto" [formControlName]="f.title" ngModel>
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of f.widgetData" [value]="option.value">
               {{option.title}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <div *ngSwitchCase="f.type === 'API_AUTOCOMPLETE'">
+        <mat-form-field appearance="outline"
+          [ngStyle]="{'width':(list.childField.length === 2) ? '660px' : (list.childField.length === 3) ? '440px'  : (list.childField.length >= 4) ? '322px' : '1420px'}">
+          <mat-label>{{f.title}}</mat-label>
+          <input type="text" aria-label="Admin" matInput [matAutocomplete]="auto" [formControlName]="f.title" ngModel
+            (keyup)="filterChange($event,f.title)">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let option of filteredOptions" [value]="option">
+              {{option}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
@@ -78,7 +91,7 @@
       <div *ngSwitchCase="f.type === 'CHECKBOX'">
         <mat-label>{{f.title}} :</mat-label><br>
         <section class="check" *ngFor="let option of f.widgetData">
-          <mat-checkbox [formControlName]="option.title" ngModel [value]="option.value">{{option.title}}</mat-checkbox>
+          <mat-checkbox [formControlName]="option.title" ngModel >{{option.title}}</mat-checkbox>
           &nbsp;
         </section>
       </div>

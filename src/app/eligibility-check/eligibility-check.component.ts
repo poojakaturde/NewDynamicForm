@@ -120,7 +120,7 @@ export class EligibilityCheckComponent implements OnInit {
     }
     console.log(this.result)
     this.form.controls['nextFormId'].setValue(this.nextId);
-    this.http.post<any>("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/createForm", this.result).subscribe((res) => {
+    this.http.post<any>("https://c527-103-208-69-65.in.ngrok.io/dynamicform/createForm", this.result).subscribe((res) => {
       console.log(res);
     })
     this.router.navigate(['eligible'])
@@ -133,7 +133,7 @@ export class EligibilityCheckComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
+    this.http.get("https://c527-103-208-69-65.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
       this.formList = res;
     })
   }

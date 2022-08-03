@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   getFormList() {
-    this.http.get("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
+    this.http.get("https://c527-103-208-69-65.in.ngrok.io/dynamicform/getAll").subscribe((res) => {
       this.formData = res;
       this.dataSource = new MatTableDataSource(this.formData);
       this.dataSource.paginator = this.paginator;
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
 
 
   deleteForm() {
-    this.http.delete("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/delete?id=" + this.deleteFormId).subscribe((res) => {
+    this.http.delete("https://c527-103-208-69-65.in.ngrok.io/dynamicform/delete?id=" + this.deleteFormId).subscribe((res) => {
       console.log(res);
       this.getFormList();
       this.display = "none";
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
   }
 
   deleteFormPermanent() {
-    this.http.delete("https://e3c1-103-208-69-114.in.ngrok.io/dynamicform/deletePermanently?id=" + this.deleteFormId).subscribe((res) => {
+    this.http.delete("https://c527-103-208-69-65.in.ngrok.io/dynamicform/deletePermanently?id=" + this.deleteFormId).subscribe((res) => {
       console.log(res);
       this.getFormList();
       this.display = "none";

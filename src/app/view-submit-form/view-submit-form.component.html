@@ -1,6 +1,6 @@
-<h3 style="text-align:center;">View Submitted Form</h3>
-<hr>
+<h1 class="header">{{formRenderData.formName}}</h1>
 
+<br><br>
 <div *ngFor="let form of formRenderData.field" [ngSwitch]="true">
     <div class="formRender" *ngFor="let formData of form.childField">
 
@@ -27,7 +27,7 @@
             </mat-form-field>
         </div>
 
-        <div *ngSwitchCase="formData.type === 'AUTOCOMPLETE'">
+        <div *ngSwitchCase="formData.type === 'API_AUTOCOMPLETE'">
             <mat-form-field appearance="outline"
                 [ngStyle]="{'width':(form.childField.length === 2) ? '720px' : (form.childField.length === 3) ? '480px'  : (form.childField.length >= 4) ? '345px' : '1490px'}">
                 <mat-label>{{formData.title}}</mat-label>
@@ -65,6 +65,5 @@
                 <mat-checkbox [checked]="option.selected">{{option.title}}</mat-checkbox> &nbsp;
             </section>
         </div>
-
     </div>
 </div>
